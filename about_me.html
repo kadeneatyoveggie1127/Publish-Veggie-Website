@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me • EatYoVeggie</title>
+<link rel="icon" type="image/png" href="eatyoveggielogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #1B5E20;
+  --muted: #33691E;
+  font-size: 13px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Baloo 2', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  background: #fafafa;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 24px 10%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.brand .cat {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  background: linear-gradient(135deg, #FFF9D8, #FFF4A8);
+  box-shadow: 0 2px 6px rgba(255, 200, 0, 0.25);
+  border-radius:50%
+}
+nav { display: flex; gap: 34px; }
+nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1B3D20;
+  padding-bottom: 4px;
+  position: relative;
+  transition: 0.25s ease;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #2E7D32;
+  transition: width 0.25s ease;
+}
+nav a:hover { color: #2E7D32; }
+nav a:hover::after { width: 100%; }
+
+.profile-header {
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 50%, #1B5E20 100%);
+  padding: 60px 10% 120px;
+  position: relative;
+}
+.profile-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #fafafa;
+  clip-path: ellipse(70% 100% at 50% 100%);
+}
+
+.profile-card {
+  max-width: 900px;
+  margin: -80px auto 40px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  padding: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid #4CAF50;
+  object-fit: cover;
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  flex-shrink: 0;
+}
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info h1 {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+}
+.profile-info .tagline {
+  font-size: 1.4rem;
+  color: var(--muted);
+}
+.profile-info .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+  border-radius: 20px;
+  font-size: 1.1rem;
+}
+.profile-info .status::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #4CAF50;
+  border-radius: 50%;
+}
+
+.profile-description {
+  padding: 24px;
+  background: #f8f8f8;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.section-container {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.about-section {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.about-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.about-section h2 .icon {
+  width: 40px;
+  height: 40px;
+  background: #e0e0e0; 
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+}
+
+.about-section p, .about-section ul {
+  font-size: 1.35rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.about-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+.about-section ul li {
+  padding: 8px 0;
+  padding-left: 28px;
+  position: relative;
+}
+.about-section ul li::before {
+  content: "🥬";
+  position: absolute;
+  left: 0;
+}
+
+.about-with-image {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+}
+
+.about-with-image .about-content {
+  flex: 1 1 300px;
+}
+
+.about-with-image .image-holder {
+  flex: 1 1 250px;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-with-image .image-holder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.rect-image-holder {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 24px;
+}
+
+/* Hobbies Section - Tilt Right */
+.about-hobbies {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.about-hobbies .about-content {
+  flex: 1 1 300px;
+}
+
+.hobby-images {
+  flex: 1 1 300px;
+  display: flex;
+  gap: -40px; /* overlap effect */
+  justify-content: flex-end;
+  perspective: 1000px;
+}
+
+.hobby-img {
+  width: 120px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  transform: rotate(8deg); /* tilt right */
+  transition: transform 0.4s ease, z-index 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
+
+.hobby-img:nth-child(1) { transform: rotate(8deg); }
+.hobby-img:nth-child(2) { transform: rotate(10deg); }
+.hobby-img:nth-child(3) { transform: rotate(12deg); }
+
+.hobby-img:hover {
+  transform: rotate(0deg) scale(2);
+  z-index: 10;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 1.3rem;
+  border-top: 2px solid rgba(0,0,0,0.08);
+  background: white;
+}
+
+@media(max-width:768px){
+  .profile-top { flex-direction: column; text-align: center; }
+  .profile-pic { width: 120px; height: 120px; }
+  .profile-card { margin-top: -60px; padding: 24px; }
+  .about-with-image, .about-hobbies { flex-direction: column; }
+  .hobby-images { justify-content: center; gap: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="cat">🥕</div>
+    EatYoVeggie
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="learn.html">Learn</a>
+    <a href="benefits.html">Benefits</a>
+    <a href="fun_facts.html">Fun Facts</a>
+    <a href="about_me.html">About Me</a>
+    <a href="source.html">Sources</a>
+  </nav>
+</header>
+
+<div class="profile-header"></div>
+
+<main>
+
+<section class="profile-card">
+  <div class="profile-top">
+    <div class="profile-pic">
+      <img src="Kaden_Looking.png" alt="Profile Picture" onerror="this.style.display='none'; this.parentElement.innerHTML='🧑‍🌾';">
+    </div>
+    <div class="profile-info">
+      <h1>Kaden H.</h1>
+      <div class="tagline">Creator of EatYoVeggie</div>
+      <div class="status">High School Freshman</div>
+    </div>
+  </div>
+
+  <div class="profile-description">
+    <p>Hey there! I’m Kaden H, a high school freshman who had a dream of making an impact in any way. Ever since the nutrition unit in my health class, I been loving veggies even more now. Through this website, I want people to learn and hopefully love veggies again, just like I did. </p>
+  </div>
+</section>
+
+<div class="section-container">
+
+  <section class="about-section about-with-image">
+    <div class="about-content">
+      <h2><span class="icon">👋</span> How I created this website</h2>
+      <p>Please note that I have 0 HTML, CSS, and Java experience. I am not a professional web developer and I am not that great of an artist either. The cartoon characters are generated from Replit Agent. Using Replit along with the help of AI (artificial intelligence) and YouTube tutorials (like how to web design), I created this website called EatYoVeggie, so hopefully you can start eating yo veggie. The research is done with many websites and articles, all are linked in the Sources section found on the navigation bar.</p>
+    </div>
+    <div class="image-holder">
+      <img src="about_me_kadenworking.png" alt="Website creation image">
+    </div>
+  </section>
+
+  <!-- Hobbies Section with Tilted Right Images -->
+  <section class="about-section about-hobbies">
+    <div class="about-content">
+      <h2><span class="icon">❤️</span> My Hobbies</h2>
+      <ul>
+        <li>I play basketball, table tennis, and Badminton</li>
+        <li>I also play the clarinet</li>
+        <li>I learn Spanish on Duolingo</li>
+        <li>I also like to chat with friends</li>
+        <li>I like biking on sunny days</li>
+      </ul>
+    </div>
+    <div class="hobby-images">
+      <div class="hobby-img" style="background-image: url('about_me_basketball.png');"></div>
+      <div class="hobby-img" style="background-image: url('about_me_bike.png');"></div>
+      <div class="hobby-img" style="background-image: url('about_me_duolingo.png');"></div>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h2><span class="icon">💡</span> What Inspired Me</h2>
+    <p>I noticed a lot of teenagers and children don’t like to eat their veggies, and I used to be like them. After learning about all the amazing things veggies can provide for our bodies. I didn’t wait; I immediately got started with the project, even without the programming experience for web development. Some days, I stayed up until 1:00 am working on this project on a school day because I was so eager to make this website come true. </p>
+  </section>
+
+  <section class="about-section about-with-image">
+    <div class="about-content">
+      <h2><span class="icon">🎯</span> My Goals</h2>
+      <ul>
+        <li>Help the community like vegetables even more.</li>
+        <li>Inspire younger kids to eat more nutritious food.</li>
+        <li>Make the website better over time with feedback!</li>
+      </ul>
+    </div>
+    <div class="image-holder">
+      <img src="goals_reaching.png" alt="Reaching for goals">
+    </div>
+  </section>
+
+  <div class="rect-image-holder">
+    <img src="about_me_kadenbeach.png" alt="Rectangular image">
+  </div>
+
+  <!-- FEEDBACK SECTION -->
+  <section class="about-section">
+    <h2><span class="icon">😃</span> Feedback & Suggestions</h2>
+    <p>Since this is my first website, I would love to hear your feedback and suggestions to make it even better. Feel free to reach out, and I’m always open to new ideas. After all, great minds think alike!</p>
+    <ul>
+      <li>Fill out the feedback form here:  
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5bQq1Xbr4ItXiLYpEK9LoMu7AsOX_rrXsm9eaP6ijD-467Q/viewform?usp=sharing&ouid=102776437435832722917" target="_blank">
+          Google Feedback Form
+        </a>
+      </li>
+      <li>Email me at:  
+        <a href="https://mail.google.com/mail/?view=cm&to=kadeneatyoveggie1127@gmail.com" target="_blank">
+          kadeneatyoveggie1127@gmail.com
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SOURCES SECTION -->
+  <section class="about-section rect-image-holder">
+    <h2><span class="icon">📚</span> Sources</h2>
+    <p>Click below to access the <strong>Sources</strong> page, where you can find all the websites and articles I used to research and create EatYoVeggie.</p>
+    <a href="source.html" style="display:inline-block; margin-top:16px; padding:12px 24px; background:#4CAF50; color:white; border-radius:12px; text-decoration:none; font-weight:600; transition:0.3s ease;">
+      Go to Sources Page
+    </a>
+  </section>
+
+</div>
+
+</main>
+
+<footer>
+  © 2025 EatYoVeggie · Healthy Vibes, Happy Lives! · Created by Kaden H 🥕
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.about-section');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold: 0.2});
+
+sections.forEach(sec => observer.observe(sec));
+</script>
+
+</body>
+</html>

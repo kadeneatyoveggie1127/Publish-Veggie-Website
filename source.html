@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources • EatYoVeggie</title>
+<link rel="icon" type="image/png" href="eatyoveggielogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #1B5E20;
+  --muted: #33691E;
+  font-size: 13px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Baloo 2', sans-serif;
+  color: var(--text);
+  background: #fafafa;
+  overflow-x: hidden;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 24px 10%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.brand .cat {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  background: linear-gradient(135deg, #FFF9D8, #FFF4A8);
+  box-shadow: 0 2px 6px rgba(255, 200, 0, 0.25);
+  border-radius:50%
+}
+
+nav { display: flex; gap: 34px; }
+nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1B3D20;
+  padding-bottom: 4px;
+  position: relative;
+  transition: 0.25s ease;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #2E7D32;
+  transition: width 0.25s ease;
+}
+nav a:hover { color: #2E7D32; }
+nav a:hover::after { width: 100%; }
+
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+section {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+section ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+section ul li {
+  padding: 6px 0;
+  font-size: 1.3rem;
+}
+
+section ul li a {
+  text-decoration: none;
+  color: #1B5E20;
+}
+section ul li a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 1.3rem;
+  border-top: 2px solid rgba(0,0,0,0.08);
+  background: white;
+}
+
+@media(max-width:768px){
+  nav { flex-direction: column; gap: 16px; margin-top: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="cat">🥕</div>
+    EatYoVeggie
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="learn.html">Learn</a>
+    <a href="benefits.html">Benefits</a>
+    <a href="fun_facts.html">Fun Facts</a>
+    <a href="about_me.html">About Me</a>
+    <a href="sources.html">Sources</a>
+  </nav>
+</header>
+
+<main>
+
+<section>
+  <h2>Learn Page</h2>
+  <ul>
+    <li><a href="https://www.britannica.com/topic/vegetable" target="_blank">Britannica (Click me to view the source) (Section: "What Are Veggies?")</a></li>
+    <li><a href="https://alliancebioversityciat.org/stories/how-many-types-vegetables-are-there-complete-guide" target="_blank">Alliance Bioversity & CIAT (Click me to view the source) (Section: "Types of Veggies")</a></li>
+    <li><a href="https://ucanr.edu/site/uc-master-gardener-program-alameda-county/guide-growing-vegetables-beginning-gardeners" target="_blank">UC Master Gardener Program of Alameda County (Click me to view the source) (Section: "How Veggies Grow")</a></li>
+    <li><a href="https://www.health.harvard.edu/blog/phytonutrients-paint-your-plate-with-the-colors-of-the-rainbow-2019042516501?" target="_blank">Harvard Health Publishing (Click me to view the source) (Section: "Veggies by Color")</a></li>
+    <li><a href="https://greatgardenplans.com/why-are-my-garden-vegetables-bitter/" target="_blank">GREATGARDENPLANS (Click me to view the source) (Section: "Why Do Veggies Taste Weird?")</a></li>
+    <li><a href="https://my.clevelandclinic.org/health/articles/nutrition" target="_blank">Cleveland Clinic (Click me to view the source) (Section: "What Are Nutrients?")</a></li>
+    <li><a href="https://www.health.harvard.edu/blog/what-is-a-plant-based-diet-and-why-should-you-try-it-2018092614760" target="_blank">Harvard Health Publishing (Click me to view the source) (Section: "How to Make Veggies Tasty?")</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Benefits Page</h2>
+  <ul>
+    <li><a href="https://health.clevelandclinic.org/broccoli-benefits" target="_blank">Cleveland Clinic (Click me to view the source) (Section: "Power Up Your Muscles!")</a></li>
+    <li><a href="https://www.healthline.com/nutrition/foods/carrots#vitamins-minerals" target="_blank">Healthline (click me to view the source) (Section: "Improved Vision!")</a></li>
+    <li><a href="https://health.clevelandclinic.org/benefits-of-spinach" target="_blank">Cleveland Clinic (click me to view the source) (Section: "Stay Energized")</a></li>
+    <li><a href="https://www.webmd.com/food-recipes/ss/slideshow-tomato-health-benefits" target="_blank">WebMD (Click me to view the source) (Section: "Healthy Heart!")</a></li>
+    <li><a href="https://www.healthline.com/nutrition/green-pepper-benefits" target="_blank">Healthline (Click me to view the source) (Section: "Shield Against Sickness!")</a></li>
+    <li><a href="https://www.webmd.com/diet/health-benefits-vegetables" target="_blank">WebMD (Click me to view the source) (Section: "All-Around Health")</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Fun Facts Page</h2>
+  <ul>
+    <li><a href="https://www.gardenary.com/blog/things-you-didnt-know-about-broccoli" target="_blank">Gardenary (Click me to view the source) (Section: "Broccoli")</a></li>
+    <li><a href="https://nutritionsource.hsph.harvard.edu/what-should-you-eat/vegetables-and-fruits/" target="_blank">Harvard T.H. Chan (Click me to view the source) (Section: "Carrot")</a></li>
+    <li><a href="https://www.smithsonianmag.com/history/how-the-misrepresentation-of-tomatoes-as-stinking-poison-apples-that-provoked-vomiting-made-people-afraid-of-them-for-more-than-200-years-863735/" target="_blank">Smithsonian Magazine (Click me to view the source) (Section: "Tomato")</a></li>
+    <li><a href="https://elearncollege.com/nutrition-and-diet/asparagus-and-your-guide-to-health/" target="_blank">Elearn College (Click me to view the source) (Section: "Asparagus")</a></li>
+    <li><a href="https://www.tabletmag.com/sections/food/articles/eggplant-stigma-staple-sephardic-food" target="_blank">Tablet Magazine (Click me to view the source) (Section: "Eggplant")</a></li>
+    <li><a href="https://evolution.earthathome.org/grasses/andropogoneae/maize-domestication/" target="_blank">Earth@Home (Click me to view the source) (Section: "Corn")</a></li>
+    <li><a href="https://biologyinsights.com/is-a-pepper-a-fruit-or-a-vegetable/" target="_blank">Biology Insights (Click me to view the source) (Section: "Bell Pepper")</a></li>
+    <li><a href="https://www.webmd.com/food-recipes/cucumber-health-benefits" target="_blank">WebMD (Click me to view the source) (Section: "Cucumber")</a></li>
+    <li><a href="https://www.britannica.com/story/why-do-onions-make-you-cry" target="_blank">Britannica (Click me to view the source) (Section: "Onion")</a></li>
+    <li><a href="https://www.britannica.com/plant/pea" target="_blank">Britannica (Click me to view the source) (Section: "Peas")</a></li>
+    <li><a href="https://historycooperative.org/origin-of-french-fries/" target="_blank">History Cooperative (Click me to view the source) (Section: "Potato")</a></li>
+    <li><a href="https://www.healthline.com/nutrition/11-proven-health-benefits-of-garlic" target="_blank">Healthline (Click me to view the source) (Section: "Garlic")</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  © 2025 EatYoVeggie · Healthy Vibes, Happy Lives! · Created by Kaden H 🥕
+</footer>
+
+</body>
+</html>

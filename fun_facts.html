@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fun Facts • EatYoVeggie</title>
+<link rel="icon" type="image/png" href="eatyoveggielogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #1B5E20;
+  --muted: #33691E;
+  font-size: 13px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Baloo 2', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  background: white;
+  background-size: 300% 300%;
+  animation: bgShift 18s ease infinite;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 24px 10%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.brand .cat {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  background: linear-gradient(135deg, #FFF9D8, #FFF4A8);
+  box-shadow: 0 2px 6px rgba(255, 200, 0, 0.25);
+  border-radius:50%
+}
+nav { display: flex; gap: 34px; }
+nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1B3D20;
+  padding-bottom: 4px;
+  position: relative;
+  transition: 0.25s ease;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #2E7D32;
+  transition: width 0.25s ease;
+}
+nav a:hover { color: #2E7D32; }
+nav a:hover::after { width: 100%; }
+
+.hero-banner {
+  text-align: center;
+  padding: 80px 10% 40px;
+  background: #ffe100;
+  background: linear-gradient(177deg, rgba(255, 225, 0, 1) 0%, rgba(255, 107, 107, 1) 50%, rgba(255, 238, 0, 1) 100%);
+}
+.hero-banner h1 {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+.hero-banner p {
+  font-size: 1.6rem;
+  color: var(--muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.veggie-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  padding: 60px 10%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.veggie-item {
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.veggie-item:hover {
+  transform: scale(1.05);
+}
+
+.veggie-item img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  padding: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+.veggie-item:hover img {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+.veggie-item .veggie-name {
+  margin-top: 12px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.veggie-item .click-hint {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+.fact-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.fact-popup.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.fact-popup .popup-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.fact-popup img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.fact-popup h3 {
+  font-size: 2.2rem;
+  color: var(--text);
+}
+.fact-popup .fun-fact {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--muted);
+  padding: 20px;
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+  border-radius: 16px;
+}
+.fact-popup .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.fact-popup .close-btn:hover {
+  background: #e0e0e0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 1.3rem;
+  border-top: 2px solid rgba(0,0,0,0.08);
+}
+
+@media(max-width:768px){
+  .veggie-gallery { grid-template-columns: repeat(2, 1fr); padding: 40px 5%; gap: 20px; }
+  .veggie-item img { width: 120px; height: 120px; }
+  .hero-banner h1 { font-size: 2.8rem; }
+  .fact-popup { padding: 24px; }
+  .fact-popup h3 { font-size: 1.8rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="cat">🥕</div>
+    EatYoVeggie
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="learn.html">Learn</a>
+    <a href="benefits.html">Benefits</a>
+    <a href="fun_facts.html">Fun Facts</a>
+    <a href="about_me.html">About Me</a>
+    <a href="source.html">Sources</a>
+  </nav>
+</header>
+
+<section class="hero-banner">
+  <h1>Veggie Fun Facts!</h1>
+  <p>Click on any vegetable to discover amazing and surprising facts. I bet you didn't know most of these facts before! </p>
+</section>
+
+<main class="veggie-gallery">
+
+  <div class="veggie-item" data-veggie="broccoli">
+    <img src="fun_broccoli.png" alt="Broccoli">
+    <div class="veggie-name">Broccoli</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="carrot">
+    <img src="fun_carrot.png" alt="Carrot">
+    <div class="veggie-name">Carrot</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="tomato">
+    <img src="fun_tomato.png" alt="Tomato">
+    <div class="veggie-name">Tomato</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="asparagus">
+    <img src="fun_asparagus.png" alt="Asparagus">
+    <div class="veggie-name">Asparagus</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="eggplant">
+    <img src="fun_eggplant.png" alt="Eggplant">
+    <div class="veggie-name">Eggplant</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="corn">
+    <img src="fun_corn.png" alt="Corn">
+    <div class="veggie-name">Corn</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="pepper">
+    <img src="fun_pepper.png" alt="Bell Pepper">
+    <div class="veggie-name">Bell Pepper</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="cucumber">
+    <img src="fun_cucumber.png" alt="Cucumber">
+    <div class="veggie-name">Cucumber</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="onion">
+    <img src="fun_onion.png" alt="Onion">
+    <div class="veggie-name">Onion</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="peas">
+    <img src="fun_peas.png" alt="Peas">
+    <div class="veggie-name">Peas</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="potato">
+    <img src="fun_potato.png" alt="Potato">
+    <div class="veggie-name">Potato</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+  <div class="veggie-item" data-veggie="garlic">
+    <img src="fun_garlic.png" alt="Garlic">
+    <div class="veggie-name">Garlic</div>
+    <div class="click-hint">Click me!</div>
+  </div>
+
+</main>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="fact-popup" id="factPopup">
+  <button class="close-btn" id="closeBtn">×</button>
+  <div class="popup-header">
+    <img id="popupImg" src="" alt="">
+    <h3 id="popupTitle"></h3>
+  </div>
+  <div class="fun-fact" id="popupFact"></div>
+</div>
+
+<footer>
+  © 2025 EatYoVeggie · Healthy Vibes, Happy Lives! · Created by Kaden H 🥕
+</footer>
+
+<script>
+const funFacts = {
+  broccoli: {
+    name: "Broccoli",
+    img: "fun_broccoli.png",
+    fact: "People have been eating broccoli for over 2,000 years! It was first grown in Italy."
+  },
+  carrot: {
+    name: "Carrot",
+    img: "fun_carrot.png",
+    fact: "Carrots come in many colors, like orange, purple, red, yellow, and white. Each color gives different nutrients that help your body in unique ways."
+  },
+  tomato: {
+    name: "Tomato",
+    img: "fun_tomato.png",
+    fact: "When tomatoes first arrived in Europe, many people thought they were poisonous! For hundreds of years, people have avoided eating them, even though they’re perfectly safe and super healthy."
+  },
+  asparagus: {
+    name: "Asparagus",
+    img: "fun_asparagus.png",
+    fact: "Asparagus was once considered a royal treat. Only kings and nobles got to eat it because it was so fancy and hard to grow!"
+  },
+  eggplant: {
+    name: "Eggplant",
+    img: "fun_eggplant.png",
+    fact: "Eggplants were once called “mad apples” in Europe because people thought they would make you go crazy if you ate them! "
+  },
+  corn: {
+    name: "Corn",
+    img: "fun_corn.png",
+    fact: "Corn used to be tiny, about the size of a finger! Farmers grew it over the years to make the big, sweet corn we eat today!"
+  },
+  pepper: {
+    name: "Bell Pepper",
+    img: "fun_pepper.png",
+    fact: "Bell peppers are actually fruits, even though we usually eat them as vegetables!"
+  },
+  cucumber: {
+    name: "Cucumber",
+    img: "fun_cucumber.png",
+    fact: "Cucumbers are about 95% water, so eating them helps you stay hydrated. It’s like drinking water and eating at the same time! "
+  },
+  onion: {
+    name: "Onion",
+    img: "fun_onion.png",
+    fact: "Onions can make you cry! Cutting an onion releases sulfur compounds that irritate your eyes."
+  },
+  peas: {
+    name: "Peas",
+    img: "fun_peas.png",
+    fact: "Peas were first grown about 7,000 years ago in the Middle East and were later traded and spread to other parts of the world."
+  },
+  potato: {
+    name: "Potato",
+    img: "fun_potato.png",
+    fact: "The first French fries (fried potatoes) may have been made in Belgium when villagers fried potatoes as a replacement for fish in the winter, or in Paris during the 1780s when street vendors sold fried potatoes."
+  },
+  garlic: {
+    name: "Garlic",
+    img: "fun_garlic.png",
+    fact: "Garlic has been used for thousands of years as a natural medicine to keep people healthy. "
+  }
+};
+
+const veggieItems = document.querySelectorAll('.veggie-item');
+const popup = document.getElementById('factPopup');
+const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('closeBtn');
+
+veggieItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const veggie = item.dataset.veggie;
+    const data = funFacts[veggie];
+    
+    document.getElementById('popupImg').src = data.img;
+    document.getElementById('popupTitle').textContent = data.name;
+    document.getElementById('popupFact').textContent = data.fact;
+    
+    popup.classList.add('active');
+    overlay.classList.add('active');
+  });
+});
+
+function closePopup() {
+  popup.classList.remove('active');
+  overlay.classList.remove('active');
+}
+
+closeBtn.addEventListener('click', closePopup);
+overlay.addEventListener('click', closePopup);
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') closePopup();
+});
+</script>
+
+</body>
+</html>

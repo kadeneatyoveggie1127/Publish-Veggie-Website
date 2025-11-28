@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EatYoVeggie - Healthy vibes, happy lives!</title>
+<link rel="icon" type="image/png" href="eatyoveggielogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #1B5E20;
+  --muted: #33691E;
+  font-size: 13px;
+}
+
+/* GLOBAL RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Baloo 2', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  background: white;
+  background-size: 300% 300%;
+  animation: bgShift 18s ease infinite;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* NAV BAR */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 24px 10%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.brand .cat {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  background: linear-gradient(135deg, #FFF9D8, #FFF4A8);
+  box-shadow: 0 2px 6px rgba(255, 200, 0, 0.25);
+  border-radius:50%
+}
+nav { display: flex; gap: 34px; }
+nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1B3D20;
+  padding-bottom: 4px;
+  position: relative;
+  transition: 0.25s ease;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #2E7D32;
+  transition: width 0.25s ease;
+}
+nav a:hover { color: #2E7D32; }
+nav a:hover::after { width: 100%; }
+
+/* SECTIONS */
+.section {
+  padding: 60px 10%;
+  position: relative;
+}
+
+/* Default spacing (hero only) */
+.with-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Balanced spacing for all sections */
+.section:nth-of-type(2) .with-img,
+.section:nth-of-type(3) .with-img,
+.section:nth-of-type(4) .with-img {
+  gap: 30px;
+}
+
+/* Extra spacing for Kaden's Mission */
+.section:nth-of-type(5) .with-img {
+  gap: 60px;
+}
+
+.section:nth-of-type(5) .section-text {
+  margin-left: 80px;
+}
+
+.alt-right { flex-direction: row-reverse; }
+
+.section h1, .section h2 {
+  font-size: 3.75rem;
+  margin-bottom: 24px;
+}
+.section p {
+  max-width: 480px;  /*change length of text boxes */
+  color: var(--muted);
+  font-size: 1.55rem;
+  line-height: 1.6;
+}
+
+/* IMAGE SIZES */
+.hero-img,
+.first-img { max-width: 825px; }
+.section-img { max-width: 600px; }
+
+/* SCROLL ANIMATIONS */
+.with-img img {
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  transition: all 1.2s ease-out;
+}
+.section-text {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s ease-out;
+}
+.section.show img,
+.section.show .section-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:960px){
+  .with-img { flex-direction: column; text-align: center; }
+  .hero-img,
+  .first-img,
+  .section-img { max-width: 90%; }
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 1.3rem;
+  border-top: 2px solid rgba(0,0,0,0.08);
+  backdrop-filter: blur(4px);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="cat">🥕</div>
+    EatYoVeggie
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="learn.html">Learn</a>
+    <a href="benefits.html">Benefits</a>
+    <a href="fun_facts.html">Fun Facts</a>
+    <a href="about_me.html">About Me</a>
+    <a href="source.html">Sources</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="section with-img">
+  <div class="section-text">
+    <h1>Eat your veggies!</h1>
+    <p>Those little green tree looking things on your plate aren't just decorations, they're are tiny power-ups for your body. My name is Kaden, and I will show you how fun and tasty veggies can be! </p>
+  </div>
+  <img class="hero-img" src="../Veggie_Heros.png" width = "650" alt="Veggie Mascot">
+</section>
+
+<section class="section with-img">
+  <div class="section-text">
+    <h2>A hero to your body</h2>
+    <p>Carrots may look simple as being plain orange, but on the inside they boost your eyes, energy, and your whole body. Pretty heroic for a veggie right?</p>
+  </div>
+  <img class="hero-img" src="../Carrot_Hero.png" width="500" alt="Carrot Hero">
+</section>
+
+<section class="section with-img alt-right">
+  <div class="section-text">
+    <h2>Learn more fun facts!</h2>
+    <p>Did you know carrots can make you run faster?
+      Okay, not literally, but they do boost your eyes, energy, and focus. Pretty amazing for a tiny orange veggie, right?</p>
+  </div>
+  <img class="hero-img" src="../Carrot_Bro.png" width="550" alt="Fun Facts">
+</section>
+
+<section class="section with-img">
+  <div class="section-text">
+    <h2>Health Benefits</h2>
+    <p>Think veggies are weak? Tell that to our broccoli with biceps! Packed with vitamins, minerals, and natural energy. Veggies give you real strength, look at him! He never skips a day, and neither should you!</p>
+  </div>
+  <img class="section-img" src="../Strong_brocoli.png" alt="Benefits">
+</section>
+
+<section class="section with-img alt-right">
+  <div class="section-text">
+    <h2>Kaden's Mission</h2>
+    <p>Now, as a high school freshman, I want to share what I’ve learned and help others discover how delicious and beneficial vegetables can be. Maybe one day veggies won’t be leftovers on your plate, and you’ll see why your parents insisted on them. </p>
+  </div>
+  <img class="section-img" src="../Kaden_Looking.png" width="500" alt="Kaden Mission">
+</section>
+
+</main>
+
+<footer>
+  © 2025 EatYoVeggie · Healthy vibes, Happy lives! · Created by Kaden H 🥕
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.75});
+
+sections.forEach(sec => observer.observe(sec));
+</script>
+
+</body>
+</html>

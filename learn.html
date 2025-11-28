@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn • EatYoVeggie</title>
+<link rel="icon" type="image/png" href="eatyoveggielogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #1B5E20;
+  --muted: #33691E;
+  font-size: 13px;
+}
+
+/* GLOBAL RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Baloo 2', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  background: white;
+  background-size: 300% 300%;
+  animation: bgShift 18s ease infinite;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* NAV BAR (same as homepage) */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 24px 10%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.brand .cat {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  background: linear-gradient(135deg, #FFF9D8, #FFF4A8);
+  box-shadow: 0 2px 6px rgba(255, 200, 0, 0.25);
+  border-radius:50%
+}
+nav { display: flex; gap: 34px; }
+nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1B3D20;
+  padding-bottom: 4px;
+  position: relative;
+  transition: 0.25s ease;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #2E7D32;
+  transition: width 0.25s ease;
+}
+nav a:hover { color: #2E7D32; }
+nav a:hover::after { width: 100%; }
+
+/* SECTIONS */
+.section {
+  padding: 80px 10%;
+  position: relative;
+}
+
+/* paired layout: always text left, image right */
+.with-img {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 70px;
+}
+
+/* TEXT */
+.section h2 {
+  font-size: 3.2rem;
+  margin-bottom: 20px;
+}
+.section p {
+  max-width: 610px;
+  color: var(--muted);
+  font-size: 1.55rem;
+  line-height: 1.6;
+}
+
+/* IMAGES */
+.section-img {
+  max-width: 550px;
+  border-radius: 14px;
+}
+
+/* SCROLL ANIMATION */
+.with-img img,
+.section-text {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s ease-out;
+}
+.section.show img,
+.section.show .section-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:960px){
+  .with-img { flex-direction: column; text-align: center; }
+  .section-img { max-width: 90%; }
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 1.3rem;
+  border-top: 2px solid rgba(0,0,0,0.08);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header>
+  <div class="brand">
+    <div class="cat">🥕</div>
+    EatYoVeggie
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="learn.html">Learn</a>
+    <a href="benefits.html">Benefits</a>
+    <a href="fun_facts.html">Fun Facts</a>
+    <a href="about_me.html">About Me</a>
+    <a href="source.html">Sources</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- SECTION 1 -->
+<section class="section with-img">
+  <div class="section-text">
+    <h2>What Are Veggies?</h2>
+    <p>Veggies, referring to the casual way of saying vegetables, are parts of a plant that people eat. These plant parts can be prepared in many different ways, giving them unique flavors. But aren’t you still wondering why veggies taste so bad? This is only the beginning, we've got more to cover!</p>
+  </div>
+  <img class="section-img" src="learn_whatare.png" alt="Veggie Mascots">
+</section>
+
+<!-- SECTION 2 -->
+<section class="section with-img">
+  <div class="section-text">
+    <h2>Types of Veggies</h2>
+    <p>Vegetables come from many different parts of a plant, including roots (such as carrots), leaves (such as lettuce), stems (such as asparagus), tubers (such as potatoes), flowers (such as broccoli), bulbs (such as onions), and even seeds (such as peas). </p>
+  </div>
+  <img class="section-img" src="learn_types.png" width = "800" alt="Types of Veggies">
+</section>
+
+<!-- SECTION 3 -->
+<section class="section with-img">
+  <div class="section-text">
+    <h2>How Veggies Grow</h2>
+    <p>Vegetables grow best in healthy soil with plenty of sunlight, water, and nutrients. Seeds (kind of like a package) or seedlings (plants that have recently sprouted) first develop strong roots and leaves, and gardeners (potentially you) can support the plant’s growth by watering, adding fertilizer, and using mulch to keep the soil moist. With the right care, each plant grows through its stages and eventually produces the fresh vegetables we eat.</p>
+  </div>
+  <img class="section-img" src="learn_grow.png" alt="How Veggies Grow">
+</section>
+
+<!-- SECTION 4 -->
+<section class="section with-img">
+  <div class="section-text">
+    <h2>Veggies by Color</h2>
+    <p>Veggies come in all colors, and each color helps your body in different ways. Green veggies like broccoli and spinach can help protect against cancer. Red veggies like tomatoes and peppers support your heart and keep your cells healthy. Orange and yellow veggies like carrots and squash are great for your eyes and immune system. Purple veggies like eggplants and purple cabbage help your brain and can protect your heart. White veggies like onions, garlic, and cauliflower help fight germs and keep your heart healthy. Eating a variety of colored vegtables helps your body stay strong, healthy, and protected from disease! </p>
+  </div>
+  <img class="section-img" src="learn_colors.png" alt="Veggies by Color">
+</section>
+
+<!-- SECTION 5 -->
+<section class="section with-img">
+  <div class="section-text">
+    <h2>Why Do Veggies Taste Weird?</h2>
+    <p>Some veggies taste a little weird because that’s how they protect themselves in nature. Many vegetables, like broccoli, kale, or brussels sprouts, have natural chemicals that repel bugs and animals from eating them. These chemicals can make the veggie taste a bit bitter or strong to us. Sometimes the way a vegetable grows also changes its flavor. If it gets too little water, too much sun, or grows in tough soil, it can taste sharper or more “weird” than usual. Some veggies just naturally have stronger flavors because of the type or variety they are. Even though the taste can be surprising, the same “funny flavors” often mean the veggie is packed with nutrients that help keep your body healthy.</p>
+  </div>
+  <img class="section-img" src="learn_taste.png" alt="Why Veggies Taste Different">
+</section>
+
+<!-- SECTION 6 -->
+<section class="section with-img">
+  <div class="section-text">
+    <h2>What Are Nutrients?</h2>
+    <p>From the last paragraph, I talked about how veggies are packed with nutrients to keep your body healthy, but what exactly are nutrients? Nutrients are important building blocks found in food that your body needs to grow, heal itself (from injuries or diseases), and stay alive. There are six main kinds of nutrients: proteins, carbohydrates, fats, vitamins, minerals, and water. Proteins help build and boost our muscles, skin, and organs. Carbohydrates and fats give our body energy so we can move, think, and grow. Vitamins and minerals are like a shield to our immune system, bones, eyes, and other important parts of our body. Water is essential to keep all these nutrients working smoothly. Without these essential nutrients, our bodies can’t properly grow, stay healthy, or fight off sickness. This is why eating vegetables and other foods full of nutrients is very important.</p>
+  </div>
+  <img class="section-img" src="learn_nutrients.png" alt="Nutrients in Veggies">
+</section>
+
+<!-- SECTION 7 -->
+<section class="section with-img">
+  <div class="section-text">
+    <h2>How to Make Veggies Tasty?</h2>
+    <p>In my opinion, making vegetables tasty depends on how you cook them. Using healthy seasonings, like herbs, spices, or a small amount of olive or corn oil, can add a lot of flavor without making the dish unhealthy. Remember, you don’t need to eat only vegetables; the real goal is to keep a balanced diet. Meat provides protein and other essentials, while vegetables supply vitamins, minerals, and fiber. Finding the right balance and preparing veggies in a tasty way makes eating healthy much easier and more enjoyable. But you might ask, “If meat is healthy, why can’t we just eat meat and nothing else?” This is a good question, and the answer is that meat doesn’t provide all the nutrients your body needs. While meats give you protein, iron, and other important nutrients, they don’t supply nutrients like Vitamin C, or many plant-based vitamins and minerals that help your immune system, digestion, and overall health. Vegetables fill in those gaps. Eating one type of food, even if it's healthy, leaves gaps for other major nutrients that boost your body. This is why balance is key: meat gives you strength while veggies keep your body running smoothly, and together they help you stay healthy. 
+</p>
+  </div>
+  <img class="section-img" src="learn_tasty.png" alt="Making Veggies Tasty">
+</section>
+
+</main>
+
+<footer>
+  © 2025 EatYoVeggie · Healthy Vibes, Happy Lives! · Created by Kaden H 🥕
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.65});
+
+sections.forEach(sec => observer.observe(sec));
+</script>
+
+</body>
+</html>

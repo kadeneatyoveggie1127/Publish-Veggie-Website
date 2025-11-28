@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benefits • EatYoVeggie</title>
+<link rel="icon" type="image/png" href="eatyoveggielogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #1B5E20;
+  --muted: #33691E;
+  font-size: 13px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Baloo 2', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  background: white;
+  background-size: 300% 300%;
+  animation: bgShift 18s ease infinite;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 24px 10%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.brand .cat {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  background: linear-gradient(135deg, #FFF9D8, #FFF4A8);
+  box-shadow: 0 2px 6px rgba(255, 200, 0, 0.25);
+  border-radius:50%
+}
+nav { display: flex; gap: 34px; }
+nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1B3D20;
+  padding-bottom: 4px;
+  position: relative;
+  transition: 0.25s ease;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #2E7D32;
+  transition: width 0.25s ease;
+}
+nav a:hover { color: #2E7D32; }
+nav a:hover::after { width: 100%; }
+
+.hero-banner {
+  text-align: center;
+  padding: 80px 10% 60px;
+  /*background: radial-gradient(circle,rgba(218, 255, 201, 1) 19%, rgba(156, 255, 177, 1) 75%, rgba(162, 255, 148, 1) 93%); */
+  background: #00ff5e;
+  background: linear-gradient(177deg, rgba(0, 255, 94, 1) 0%, rgba(225, 255, 107, 1) 50%, rgba(0, 255, 94, 1) 100%);
+}
+.hero-banner h1 {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+.hero-banner p {
+  font-size: 1.6rem;
+  color: var(--muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  padding: 80px 10%;
+}
+
+.benefit-card {
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  border-radius: 24px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+  transform: translateY(40px);
+}
+.benefit-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.benefit-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+}
+
+.benefit-card img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 24px;
+  transition: transform 0.3s ease;
+}
+.benefit-card:hover img {
+  transform: scale(1.08);
+}
+
+.benefit-card h3 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.benefit-card p {
+  font-size: 1.35rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.benefit-highlight {
+  display: inline-block;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  margin-top: 16px;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 80px 10%;
+  background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+}
+.cta-section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.cta-section p {
+  font-size: 1.5rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 1.3rem;
+  border-top: 2px solid rgba(0,0,0,0.08);
+}
+
+@media(max-width:768px){
+  .benefits-grid { grid-template-columns: 1fr; padding: 40px 5%; }
+  .hero-banner h1 { font-size: 2.8rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="cat">🥕</div>
+    EatYoVeggie
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="learn.html">Learn</a>
+    <a href="benefits.html">Benefits</a>
+    <a href="fun_facts.html">Fun Facts</a>
+    <a href="about_me.html">About Me</a>
+    <a href="source.html">Sources</a>
+  </nav>
+</header>
+
+<section class="hero-banner">
+  <h1>Vegetable Superpowers!</h1>
+  <p>Discover the amazing benefits that vegetables bring to your body. Each veggie is packed with unique powers to help you grow stronger, think clearer, and feel better!</p>
+</section>
+
+<main class="benefits-grid">
+
+  <article class="benefit-card">
+    <img src="benefit_strength.png" alt="Strong Broccoli">
+    <h3>Power Up Your Muscles!</h3>
+    <p>Broccoli gives your muscles the support that they need. They’re full of protein and iron that help your body grow, stay strong, and recover after a workout. They are like your buddies that keep your muscles going.</p>
+    <span class="benefit-highlight">Protein</span>
+  </article>
+
+  <article class="benefit-card">
+    <img src="benefit_vision.png" alt="Carrot Vision">
+    <h3>Improved Vision!</h3>
+    <p>Carrots have something called beta-carotene, which your body changes into vitamin A. Vitamin A helps your eyes stay strong and let you see better in the dark, which is why people say carrots are good for your eyesight! </p>
+    <span class="benefit-highlight">Vitamin A</span>
+  </article>
+
+  <article class="benefit-card">
+    <img src="benefit_energy.png" alt="Spinach Energy">
+    <h3>Stay Energized!</h3>
+    <p>Spinach is packed with iron and vitamin B, which your body uses to turn food into energy. Eating these leafy greens helps you stay strong, active, and full of energy all day long, like a superhero in the making!</p>
+    <span class="benefit-highlight">Iron</span>
+  </article>
+
+  <article class="benefit-card">
+    <img src="benefit_heart.png" alt="Tomato Heart">
+    <h3>Healthy Heart!</h3>
+    <p>Tomatoes have lycopene, a strong antioxidant that helps keep your heart healthy. Red veggies are like friendly helpers for your heart!</p>
+    <span class="benefit-highlight">Lycopene</span>
+  </article>
+
+  <article class="benefit-card">
+    <img src="benefit_immune.png" alt="Pepper Immunity">
+    <h3>Shield Against Sickness!</h3>
+    <p>Peppers and citrus veggies are full of vitamin C, which helps your immune system stay strong and shield against germs and colds! </p>
+    <span class="benefit-highlight">Vitamin C</span>
+  </article>
+
+  <article class="benefit-card">
+    <img src="Protecting_veggies.png" alt="Pepper Immunity">
+    <h3>All-Around Health</h3>
+    <p>Vegetables are packed with vitamins, minerals, and fiber that keep your body strong and healthy. Eating a variety of vegetables boosts your energy, supports your immune system, and helps your brain stay sharp.</p>
+    <span class="benefit-highlight">All of the above</span>
+  </article>
+
+</main>
+
+<footer>
+  © 2025 EatYoVeggie · Healthy Vibes, Happy Lives! · Created by Kaden H 🥕
+</footer>
+
+<script>
+const cards = document.querySelectorAll('.benefit-card');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry, index) => {
+    if(entry.isIntersecting){
+      setTimeout(() => {
+        entry.target.classList.add('show');
+      }, index * 100);
+    }
+  });
+},{threshold: 0.2});
+
+cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
